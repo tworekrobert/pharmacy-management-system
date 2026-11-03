@@ -148,6 +148,10 @@ The application includes role-based access for a pharmacy manager and a pharmaci
     <td><strong>Tooling</strong></td>
     <td>Bash and PowerShell setup, run, publish and package scripts</td>
   </tr>
+  <tr>
+    <td><strong>Testing</strong></td>
+    <td>xUnit and FluentAssertions, covering password hashing, PESEL validation and PESEL encryption/masking</td>
+  </tr>
 </table>
 
 ---
@@ -224,7 +228,8 @@ pharmacy-management-system/
 |   |-- screenshots/     # selected application screenshots
 |   `-- reference/       # Polish project documentation and final report
 |-- scripts/             # setup, run, publish and package scripts
-|-- test-results/        # final UI/package test report
+|-- tests/
+|   `-- Apteka.UnitTests/  # xUnit tests for Services (hashing, PESEL, encryption)
 |-- appsettings.json
 |-- Apteka.csproj
 `-- Apteka.sln
@@ -287,6 +292,12 @@ On macOS, the helper script can also be used:
 ./scripts/run-macos.sh
 ```
 
+### Running Tests
+
+```bash
+dotnet test tests/Apteka.UnitTests
+```
+
 The default `appsettings.json` uses:
 
 ```json
@@ -323,6 +334,7 @@ Large generated packages are better published as GitHub Releases instead of bein
 The final project package was checked with:
 
 - `.NET` build;
+- xUnit unit tests (`tests/Apteka.UnitTests`) for password hashing, PESEL validation and PESEL encryption/masking;
 - SQL smoke regression test from `db/tests/001_smoke_regression.sql`;
 - demo seed validation;
 - encrypted PESEL storage check;
