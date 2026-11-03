@@ -7,7 +7,7 @@
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <LangVersion>14</LangVersion>
-        <DefaultItemExcludes>$(DefaultItemExcludes);dist/**;tmp/**;.dotnet_home/**;.home/**</DefaultItemExcludes>
+        <DefaultItemExcludes>$(DefaultItemExcludes);dist/**;tmp/**;.dotnet_home/**;.home/**;tests/**</DefaultItemExcludes>
     </PropertyGroup>
 
     <ItemGroup>
