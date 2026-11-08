@@ -96,4 +96,15 @@ public class PasswordHasherTests
 
 		PasswordHasher.Verify("correct-password-1", tampered).Should().BeFalse();
 	}
+
+	[Theory]
+	[InlineData("pbkdf2$100000$not-base64!$AAAA")]
+	[InlineData("pbkdf2$100000$AAAA$not-base64!")]
+	[InlineData("pbkdf2$abc$AAAA$AAAA")]
+	[InlineData("pbkdf2$0$AAAA$AAAA")]
+	[InlineData("pbkdf2$100000$AAAA")]
+	public void Verify_MalformedPbkdf2Hash_ReturnsFalseInsteadOfThrowing(string storedHash)
+	{
+		PasswordHasher.Verify("correct-password-1", storedHash).Should().BeFalse();
+	}
 }
