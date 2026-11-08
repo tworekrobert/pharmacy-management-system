@@ -4,7 +4,7 @@ public static class PeselValidator
 {
 	public static bool IsValid(string? pesel)
 	{
-		if (string.IsNullOrWhiteSpace(pesel) || pesel.Length != 11 || !long.TryParse(pesel, out _))
+		if (string.IsNullOrWhiteSpace(pesel) || pesel.Length != 11 || !ContainsOnlyDigits(pesel))
 			return false;
 		int[] weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
 		var sum = 0;
@@ -16,5 +16,14 @@ public static class PeselValidator
 		var checksum = (10 - sum % 10) % 10;
 
 		return controlDigit == checksum;
+	}
+
+	private static bool ContainsOnlyDigits(string value)
+	{
+		foreach (var character in value)
+			if (!char.IsAsciiDigit(character))
+				return false;
+
+		return true;
 	}
 }
