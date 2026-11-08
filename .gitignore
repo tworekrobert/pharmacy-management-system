@@ -1,0 +1,27 @@
+# Build output
+bin/
+obj/
+dist/
+tmp/
+publish/
+
+# Local tooling
+.dotnet_home/
+.home/
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Runtime output created by the application
+exports/
+backups/
+
+# Test results and coverage
+TestResults/
+coverage/
