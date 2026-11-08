@@ -39,6 +39,15 @@ public class PeselValidatorTests
 		PeselValidator.IsValid("4405120325A").Should().BeFalse();
 	}
 
+	[Theory]
+	[InlineData("+4405120325")]
+	[InlineData("-4405120325")]
+	[InlineData("4405 120325")]
+	public void IsValid_SignOrSpaceInsideValue_ReturnsFalse(string pesel)
+	{
+		PeselValidator.IsValid(pesel).Should().BeFalse();
+	}
+
 	[Fact]
 	public void IsValid_Null_ReturnsFalse()
 	{
