@@ -13,11 +13,11 @@ internal sealed class Program
 	[STAThread]
 	public static void Main(string[] args)
 	{
-		var culutre = new CultureInfo("pl-PL");
-		CultureInfo.DefaultThreadCurrentCulture = culutre;
-		CultureInfo.DefaultThreadCurrentUICulture = culutre;
-		Thread.CurrentThread.CurrentCulture = culutre;
-		Thread.CurrentThread.CurrentUICulture = culutre;
+		var culture = new CultureInfo("pl-PL");
+		CultureInfo.DefaultThreadCurrentCulture = culture;
+		CultureInfo.DefaultThreadCurrentUICulture = culture;
+		Thread.CurrentThread.CurrentCulture = culture;
+		Thread.CurrentThread.CurrentUICulture = culture;
 		BuildAvaloniaApp()
 			.StartWithClassicDesktopLifetime(args);
 	}
