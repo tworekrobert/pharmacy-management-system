@@ -150,7 +150,7 @@ The application includes role-based access for a pharmacy manager and a pharmaci
   </tr>
   <tr>
     <td><strong>Testing</strong></td>
-    <td>xUnit and FluentAssertions, covering password hashing, PESEL validation and PESEL encryption/masking</td>
+    <td>xUnit and FluentAssertions, covering password hashing, PESEL validation and PESEL encryption/masking; GitHub Actions builds and runs the unit tests on every push</td>
   </tr>
 </table>
 
@@ -317,30 +317,22 @@ The project contains scripts for creating self-contained desktop builds:
 | macOS Apple Silicon | `./scripts/package-macos-app.sh` |
 | Windows x64 | `./scripts/package-windows-zip.sh` |
 
-The final submitted version produced:
+Both scripts write their output to `dist/packages/`:
 
-- Windows x64 ZIP package;
-- macOS Apple Silicon `.app`;
-- macOS `.dmg`;
-- database setup scripts for both platforms;
-- demo database seed and SQL smoke test.
+- `package-windows-zip.sh` builds a self-contained Windows x64 ZIP;
+- `package-macos-app.sh` builds a self-contained Apple Silicon `.app` and a `.dmg` (a `.zip` when `hdiutil` is not available).
 
 Large generated packages are better published as GitHub Releases instead of being committed directly into the repository history.
 
 ---
 
-## Tests And Final Checks
+## Tests
 
-The final project package was checked with:
+- **Unit tests** (`tests/Apteka.UnitTests`, xUnit): password hashing, PESEL validation, PESEL encryption and masking.
+- **Continuous integration**: GitHub Actions restores, builds and runs the unit tests on every push (`.github/workflows/dotnet.yml`).
+- **Database smoke test**: `db/tests/001_smoke_regression.sql`, run manually against a local PostgreSQL instance (see Database Setup). It is not part of CI.
 
-- `.NET` build;
-- xUnit unit tests (`tests/Apteka.UnitTests`) for password hashing, PESEL validation and PESEL encryption/masking;
-- SQL smoke regression test from `db/tests/001_smoke_regression.sql`;
-- demo seed validation;
-- encrypted PESEL storage check;
-- ViewModel/screen loading check;
-- Windows and macOS package generation;
-- final ZIP content verification.
+The Avalonia UI and the ODBC repositories have no automated tests.
 
 ---
 
