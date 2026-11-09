@@ -25,3 +25,6 @@ backups/
 # Test results and coverage
 TestResults/
 coverage/
+
+# Local configuration with real keys and passwords
+appsettings.local.json
